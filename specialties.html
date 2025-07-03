@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تمريض التخصصات - مكتبة التمريض الشاملة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic CSS for the entire site - يمكن تعديل هذا الكود لجعله أكثر جاذبية */
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            text-align: right;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Top Bar for Sub-pages */
+        .top-bar {
+            background-color: #2196f3;
+            color: white;
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.6em;
+            margin-left: 20px;
+            transition: transform 0.2s ease;
+        }
+        .top-bar a:hover {
+            transform: translateX(-5px);
+        }
+        .top-bar h1 {
+            margin: 0;
+            font-size: 2em;
+            flex-grow: 1;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* Selling Section (Fixed on all pages) - Duplicated for simplicity, ideally shared CSS */
+        .selling-section {
+            background-color: #fff;
+            padding: 35px;
+            margin: 30px 0; /* Slightly less margin than home page */
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            text-align: center;
+            border-top: 6px solid #ff4081; /* وردي غامق */
+        }
+        .selling-section h2 {
+            color: #ff4081;
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+        .selling-section p {
+            font-size: 1.15em;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            color: #444;
+        }
+        .payment-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+        }
+        .payment-options button {
+            background-color: #2196f3; /* أزرق */
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            font-weight: 600;
+        }
+        .payment-options button:hover {
+            background-color: #1976d2;
+            transform: translateY(-3px);
+        }
+        .payment-options .vodafone-cash-btn {
+            background-color: #ff4081; /* وردي */
+        }
+        .payment-options .vodafone-cash-btn:hover {
+            background-color: #e0005a;
+        }
+        .discount-text {
+            color: #e0005a;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.3em;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
+        }
+        #vodafoneCashDetails {
+            display:none; 
+            margin-top: 25px; 
+            background-color: #fff3e0; 
+            padding: 20px; 
+            border-radius: 15px; 
+            border: 1px solid #ffcc80;
+            color: #6a4000;
+            text-align: right;
+        }
+        #vodafoneCashDetails p {
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        #vodafoneCashDetails a {
+            color: #d85c00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #vodafoneCashDetails a:hover {
+            text-decoration: underline;
+        }
+
+        /* Books Grid */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .book-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 3px solid transparent;
+        }
+        .book-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            border-color: #ff4081;
+        }
+        .book-card .book-icon {
+            font-size: 4em; /* يمكن استبدالها بصور بانرات صغيرة */
+            color: #007bb6;
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+        .book-card h3 {
+            margin: 0 0 12px 0;
+            color: #333;
+            font-size: 1.7em;
+            font-weight: 700;
+        }
+        .book-card p {
+            color: #666;
+            font-size: 1.05em;
+            margin-bottom: 25px;
+        }
+        .book-card .download-btn {
+            background-color: #4CAF50; /* أخضر */
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+        .book-card .download-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        .book-card .download-btn.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        .book-card .download-btn.disabled:hover {
+            transform: none; /* No transform on hover for disabled buttons */
+        }
+        .book-card .note-text {
+            color: #e0005a;
+            font-size: 0.95em;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        .book-card .note-text.free {
+            color: #4CAF50;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 35px;
+            margin-top: 60px;
+            background-color: #eee;
+            color: #666;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+            font-size: 0.95em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .top-bar h1 {
+                font-size: 1.8em;
+            }
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+            .selling-section {
+                padding: 25px;
+            }
+            .selling-section h2 {
+                font-size: 1.8em;
+            }
+            .selling-section p {
+                font-size: 1em;
+            }
+            .payment-options {
+                flex-direction: column;
+            }
+            .payment-options button {
+                padding: 14px 25px;
+                font-size: 1.1em;
+            }
+            .discount-text {
+                font-size: 1.1em;
+            }
+            .book-card {
+                padding: 25px;
+            }
+            .book-card h3 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="top-bar">
+            <a href="index.html">⬅️</a>
+            <h1>تمريض التخصصات</h1>
+        </header>
+
+        <section class="selling-section">
+            <h2>ارتقِ بمسيرتك المهنية الآن!</h2>
+            <p>
+                مكتبة التمريض الشاملة بين يديك: أكثر من 60 ملف PDF احترافي تغطي كل ما تحتاجه لتكون ممرضًا استثنائيًا. 
+                لا تفوت الفرصة لامتلاك هذا الكنز المعرفي الذي سيمنحك الثقة والمهارة في كل خطوة.
+            </p>
+            <div class="payment-options">
+                <button onclick="window.open('https://drmostore.gumroad.com/l/nursing-bundle', '_blank')">
+                    ادفع بالفيزا أو الماستر كارد ($3)
+                </button>
+                <button class="vodafone-cash-btn" onclick="showVodafoneCashInfo()">
+                    ادفع بفودافون كاش أو انستاباي (خصم خاص)
+                </button>
+            </div>
+            <p class="discount-text">
+                خصم خاص عند الدفع بفودافون كاش أو انستاباي: ادفع 100 جنيه فقط لفترة محدودة!
+            </p>
+            <div id="vodafoneCashDetails">
+                <p><strong>للدفع عبر انستاباي:</strong> <a href="https://ipn.eg/S/aljmalm/instapay/1yvOJU" target="_blank">اضغط هنا للدفع عبر انستاباي</a></p>
+                <p><strong>للدفع عبر فودافون كاش:</strong> قم بتحويل 100 جنيه مصري إلى رقم <strong>01028439778</strong>. بعد التحويل، يرجى التواصل معنا لإتمام عملية الشراء.</p>
+                <p><strong>ملاحظة:</strong> هذا العرض ساري لفترة محدودة.</p>
+            </div>
+        </section>
+
+        <section class="books-grid">
+            <div class="book-card">
+                <div class="book-icon">🚑</div>
+                <h3>تمريض الطوارئ</h3>
+                <p>131 صفحة</p>
+                <a href="your-actual-link-to-emergency-nursing.pdf" target="_blank" class="download-btn">فتح وتحميل</a>
+                <p class="note-text free">متاح كعينة مجانية!</p>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon">🏥</div>
+                <h3>تمريض العناية المركزة</h3>
+                <p>108 صفحة</p>
+                <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
+                <p class="note-text">غير متاح للتحميل قبل الشراء</p>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon">🚨</div>
+                <h3>أساسيات العناية المركزة</h3>
+                <p>365 صفحة</p>
+                <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
+                <p class="note-text">غير متاح للتحميل قبل الشراء</p>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon">👶</div>
+                <h3>تمريض النسا والتوليد</h3>
+                <p>116 صفحة</p>
+                <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
+                <p class="note-text">غير متاح للتحميل قبل الشراء</p>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon">🍼</div>
+                <h3>تمريض الأطفال عملي</h3>
+                <p>135 صفحة</p>
+                <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
+                <p class="note-text">غير متاح للتحميل قبل الشراء</p>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon">🧒</div>
+                <h3>تمريض الأطفال بالعربي</h3>
+                <p>334 صفحة</p>
+                <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
+                <p class="note-text">غير متاح للتحميل قبل الشراء</p>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon"> incubator</div>
+                <h3>تمريض الحضانات</h3>
+                <p>339 صفحة</p>
+                <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
+                <p class="note-text">غير متاح للتحميل قبل الشراء</p>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon">😷</div>
+                <h3>تمريض باطني جراحي نظري</h3>
+                <p>175 صفحة</p>
+                <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
+                <p class="note-text">غير متاح للتحميل قبل الشراء</p>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon">🩺</div>
+                <h3>تمريض باطني جراحي عملي</h3>
+                <p>130 صفحة</p>
+                <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
+                <p class="note-text">غير متاح للتحميل قبل الشراء</p>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 مكتبة الجادات. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // JavaScript to toggle Vodafone Cash/Instapay details visibility
+        function showVodafoneCashInfo() {
+            var details = document.getElementById('vodafoneCashDetails');
+            if (details.style.display === 'none') {
+                details.style.display = 'block';
+            } else {
+                details.style.display = 'none';
+            }
+        }
+        // Ensure initial state is hidden for the details
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('vodafoneCashDetails').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
