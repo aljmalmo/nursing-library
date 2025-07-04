@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الإسعافات الأولية والطوارئ - مكتبة التمريض الشاملة</title>
+    <title>مكتبة التمريض الشاملة - دليلك الكامل للنجاح</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Basic CSS for the entire site - يمكن تعديل هذا الكود لجعله أكثر جاذبية */
@@ -22,42 +22,51 @@
             padding: 20px;
         }
 
-        /* Top Bar for Sub-pages */
-        .top-bar {
-            background-color: #2196f3;
-            color: white;
-            padding: 18px 25px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px;
-            margin-bottom: 35px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        /* Header Section */
+        .header {
+            background-color: #e0f2f7; /* لون سماوي فاتح */
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .top-bar a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.6em;
-            margin-left: 20px;
-            transition: transform 0.2s ease;
+        .header .logo {
+            font-size: 3.5em;
+            font-weight: bold;
+            color: #2196f3; /* أزرق */
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
-        .top-bar a:hover {
-            transform: translateX(-5px);
+        .header .subtitle {
+            font-size: 1.4em;
+            color: #555;
+            margin-bottom: 25px;
         }
-        .top-bar h1 {
-            margin: 0;
-            font-size: 2em;
-            flex-grow: 1;
+        .header img.hero-image {
+            max-width: 80%;
+            height: auto;
+            margin-top: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: 5px solid #fff; /* إطار أبيض للصورة */
+        }
+        .hero-text {
+            font-size: 2.8em;
+            color: #007bb6;
+            margin: 50px 0 30px;
             text-align: center;
             font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
         }
 
-        /* Selling Section (Fixed on all pages) - Duplicated for simplicity, ideally shared CSS */
+        /* Selling Section (Fixed on all pages) */
         .selling-section {
             background-color: #fff;
             padding: 35px;
-            margin: 30px 0; /* Slightly less margin than home page */
+            margin: 40px 0;
             border-radius: 20px;
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
             text-align: center;
@@ -134,7 +143,43 @@
             text-decoration: underline;
         }
 
-        /* Books Grid */
+        /* Sections Grid */
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+   .section-card {
+            background-color: #fff;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+        .section-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+            border-color: #2196f3;
+        }
+        .section-card .icon {
+            font-size: 4em; /* يمكن استبدالها بصور أيقونات SVG */
+            color: #2196f3;
+            margin-bottom: 20px;
+            line-height: 1; /* يضبط محاذاة الأيقونة */
+        }
+        .section-card h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+
+          /* Books Grid */
         .books-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -207,6 +252,11 @@
             color: #4CAF50;
         }
 
+        
+        
+
+
+        
         /* Footer */
         .footer {
             text-align: center;
@@ -222,11 +272,17 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .top-bar h1 {
-                font-size: 1.8em;
+            .header img.hero-image {
+                max-width: 100%;
             }
-            .books-grid {
+            .hero-text {
+                font-size: 2.2em;
+            }
+            .sections-grid {
                 grid-template-columns: 1fr;
+            }
+            .payment-options {
+                flex-direction: column;
             }
             .selling-section {
                 padding: 25px;
@@ -237,9 +293,6 @@
             .selling-section p {
                 font-size: 1em;
             }
-            .payment-options {
-                flex-direction: column;
-            }
             .payment-options button {
                 padding: 14px 25px;
                 font-size: 1.1em;
@@ -247,27 +300,33 @@
             .discount-text {
                 font-size: 1.1em;
             }
-            .book-card {
-                padding: 25px;
+            .section-card {
+                padding: 30px;
             }
-            .book-card h3 {
-                font-size: 1.5em;
+            .section-card h3 {
+                font-size: 1.6em;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="top-bar">
-            <a href="index.html">⬅️</a>
-            <h1>الإسعافات الأولية والطوارئ</h1>
+        <header class="header">
+            <div class="logo">60+ PDF Library</div>
+            <div class="subtitle">مكتبة التمريض الشاملة</div>
+            <img src="Gemini_Generated_Image_qmdkw8qmdkw8qmdk.jpg" alt="مكتبة التمريض" class="hero-image">
         </header>
+
+        <h1 class="hero-text">مكتبة التمريض الشاملة: دليلك الكامل للنجاح في مجالك!</h1>
 
         <section class="selling-section">
             <h2>ارتقِ بمسيرتك المهنية الآن!</h2>
             <p>
                 مكتبة التمريض الشاملة بين يديك: أكثر من 60 ملف PDF احترافي تغطي كل ما تحتاجه لتكون ممرضًا استثنائيًا. 
                 لا تفوت الفرصة لامتلاك هذا الكنز المعرفي الذي سيمنحك الثقة والمهارة في كل خطوة.
+                <br>
+                هل أنت مستعد لتكون في مقدمة الصفوف؟ هذه المكتبة ليست مجرد كتب، بل هي رفيقك للنجاح العملي والأكاديمي. 
+                احصل على أسرار التميز، وكن مجهزًا بكل ما يلزمك لتواجه التحديات بثقة!
             </p>
             <div class="payment-options">
                 <button onclick="window.open('https://drmostore.gumroad.com/l/nursing-bundle', '_blank')">
@@ -287,7 +346,45 @@
             </div>
         </section>
 
-        <section class="books-grid">
+            <h2 class="hero-text">الأقسام الرئيسية للمكتبة</h2>
+        <section class="sections-grid">
+            <div class="section-card" onclick="location.href='basics.html'">
+                <div class="icon">📚</div>
+                <h3>أساسيات التمريض</h3>
+            </div>
+            <div class="section-card" onclick="location.href='skills.html'">
+                <div class="icon">💉</div>
+                <h3>مهارات التمريض</h3>
+            </div>
+            <div class="section-card" onclick="location.href='first-aid.html'">
+                <div class="icon">🚨</div>
+                <h3>الإسعافات الأولية</h3>
+            </div>
+            <div class="section-card" onclick="location.href='specialties.html'">
+                <div class="icon">🏥</div>
+                <h3>تمريض التخصصات</h3>
+            </div>
+            <div class="section-card" onclick="location.href='pharmacology.html'">
+                <div class="icon">💊</div>
+                <h3>علم الدواء للتمريض</h3>
+            </div>
+            <div class="section-card" onclick="location.href='surgical-tools.html'">
+                <div class="icon">✂️</div>
+                <h3>الأدوات الجراحية</h3>
+            </div>
+            <div class="section-card" onclick="location.href='labs-xrays.html'">
+                <div class="icon">🔬</div>
+                <h3>التحاليل والأشعة</h3>
+            </div>
+            <div class="section-card" onclick="location.href='tests.html'">
+                <div class="icon">📝</div>
+                <h3>نماذج واختبارات تدريبية</h3>
+            </div>
+        </section>
+
+            <h2 class="hero-text"> عينة مجانية </h2>
+
+            <section class="books-grid">
             <div class="book-card">
                 <div class="book-icon">🚨</div>
                 <h3>اسعافات التمريض بالعربي</h3>
@@ -311,35 +408,14 @@
                 <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
                 <p class="note-text">غير متاح للتحميل قبل الشراء</p>
             </div>
-
-            <div class="book-card">
-                <div class="book-icon"> triage</div>
-                <h3>كتاب فرز الحالات في الطوارئ</h3>
-                <p>20 صفحة</p>
-                <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
-                <p class="note-text">غير متاح للتحميل قبل الشراء</p>
-            </div>
-
-            <div class="book-card">
-                <div class="book-icon">🩹</div>
-                <h3>كتاب استقبال حالات الجراحة</h3>
-                <p>36 صفحة</p>
-                <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
-                <p class="note-text">غير متاح للتحميل قبل الشراء</p>
-            </div>
-
-            <div class="book-card">
-                <div class="book-icon">🚑</div>
-                <h3>كتاب عربة الطوارئ</h3>
-                <p>37 صفحة</p>
-                <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
-                <p class="note-text">غير متاح للتحميل قبل الشراء</p>
-            </div>
-        </section>
+        
+        
+        
+        
     </div>
 
     <footer class="footer">
-        <p>&copy; 2025 مكتبة الجادات. جميع الحقوق محفوظة.</p>
+        <p>&copy; 2025 مكتبة التمريض جميع الحقوق محفوظة.</p>
     </footer>
 
     <script>
